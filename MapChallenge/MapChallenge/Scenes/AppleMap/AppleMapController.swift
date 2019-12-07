@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  FirstViewController.swift
 //  MapChallenge
 //
 //  Created by Yasin Akbaş on 7.12.2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class AppleMapController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
