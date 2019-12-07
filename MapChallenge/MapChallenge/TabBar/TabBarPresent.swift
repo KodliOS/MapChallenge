@@ -14,13 +14,13 @@ struct TabBarPresent: Presentable {
     var backgroundColor: UIColor
     let tabBarItem: UITabBarItem
     
-    static func controllers() -> [TabBarPresent] {
+    static func presents() -> [TabBarPresent] {
         return [
             TabBarPresent(
-                controller: AppleMapController(),
-                title: "Apple",
+                controller: DefaultMapController(),
+                title: "Default",
                 backgroundColor: #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1),
-                tabBarItem: UITabBarItem(title: "Apple Map", image: UIImage(systemName: "cloud"), tag: 0)
+                tabBarItem: UITabBarItem(title: "Default Map", image: UIImage(systemName: "cloud"), tag: 0)
             ),
             TabBarPresent(
                 controller: GoogleMapController(),

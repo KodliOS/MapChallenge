@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  DefaultMapControllerController.swift
 //  MapChallenge
 //
 //  Created by Yasin Akbaş on 7.12.2019.
@@ -8,16 +8,16 @@
 
 import UIKit
 
-class AppleMapController: UIViewController {
+class DefaultMapController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
 
     override func loadView() {
         super.loadView()
-        view.backgroundColor = .white
+        self.view = MapView(for: self, type: .default)
     }
 }
 

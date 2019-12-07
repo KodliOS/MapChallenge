@@ -10,13 +10,13 @@ import UIKit
 
 class TabBarController: UITabBarController {
     
-    var tabBarControllers: [Presentable] = TabBarPresent.controllers()
+    var tabBarPresents: [Presentable] = TabBarPresent.presents()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAppearance()
         
-        viewControllers = makeControllers(tabBarControllers)
+        viewControllers = makeControllers(tabBarPresents)
     }
     
     private func setupAppearance() {
