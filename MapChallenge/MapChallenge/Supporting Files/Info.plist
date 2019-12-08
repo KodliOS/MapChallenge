@@ -32,6 +32,10 @@
 	<false/>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleDefault</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We will use your location to displaying on screen.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>We will use your location to displaying on screen.</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

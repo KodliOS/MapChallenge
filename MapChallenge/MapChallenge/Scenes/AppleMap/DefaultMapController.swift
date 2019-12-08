@@ -17,7 +17,7 @@ class DefaultMapController: UIViewController {
 
     override func loadView() {
         super.loadView()
-        self.view = MapView(for: self, type: .default)
+        self.view = MapView<MockMap>(for: self, type: .default)
     }
 }
 

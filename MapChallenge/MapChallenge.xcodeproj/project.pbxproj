@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C2614F72239D9E1800BE60CF /* Mapable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2614F71239D9E1800BE60CF /* Mapable.swift */; };
 		C2E1B434239B125D0000D488 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E1B433239B125D0000D488 /* AppDelegate.swift */; };
 		C2E1B43D239B125E0000D488 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2E1B43C239B125E0000D488 /* Assets.xcassets */; };
 		C2E1B440239B125E0000D488 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2E1B43E239B125E0000D488 /* LaunchScreen.storyboard */; };
@@ -16,10 +17,11 @@
 		C2EAA6FD239BD50000F074A5 /* TabBarPresent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EAA6FC239BD50000F074A5 /* TabBarPresent.swift */; };
 		C2EAA700239BD73600F074A5 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EAA6FF239BD73600F074A5 /* Presentable.swift */; };
 		C2EAA714239BE73D00F074A5 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EAA713239BE73D00F074A5 /* MapView.swift */; };
-		C2EAA716239BEF5F00F074A5 /* DefaultMapControllerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EAA715239BEF5F00F074A5 /* DefaultMapControllerController.swift */; };
+		C2EAA716239BEF5F00F074A5 /* DefaultMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EAA715239BEF5F00F074A5 /* DefaultMapController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C2614F71239D9E1800BE60CF /* Mapable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapable.swift; sourceTree = "<group>"; };
 		C2E1B430239B125D0000D488 /* MapChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2E1B433239B125D0000D488 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2E1B43C239B125E0000D488 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -31,7 +33,7 @@
 		C2EAA6FC239BD50000F074A5 /* TabBarPresent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPresent.swift; sourceTree = "<group>"; };
 		C2EAA6FF239BD73600F074A5 /* Presentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
 		C2EAA713239BE73D00F074A5 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		C2EAA715239BEF5F00F074A5 /* DefaultMapControllerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMapControllerController.swift; sourceTree = "<group>"; };
+		C2EAA715239BEF5F00F074A5 /* DefaultMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMapController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				C2EAA6FF239BD73600F074A5 /* Presentable.swift */,
+				C2614F71239D9E1800BE60CF /* Mapable.swift */,
 			);
 			path = Contracts;
 			sourceTree = "<group>";
@@ -122,7 +125,7 @@
 		C2EAA702239BD79300F074A5 /* AppleMap */ = {
 			isa = PBXGroup;
 			children = (
-				C2EAA715239BEF5F00F074A5 /* DefaultMapControllerController.swift */,
+				C2EAA715239BEF5F00F074A5 /* DefaultMapController.swift */,
 			);
 			path = AppleMap;
 			sourceTree = "<group>";
@@ -223,8 +226,9 @@
 			files = (
 				C2EAA6F8239BC9A700F074A5 /* GoogleMapController.swift in Sources */,
 				C2EAA714239BE73D00F074A5 /* MapView.swift in Sources */,
-				C2EAA716239BEF5F00F074A5 /* DefaultMapControllerController.swift in Sources */,
+				C2EAA716239BEF5F00F074A5 /* DefaultMapController.swift in Sources */,
 				C2EAA6FD239BD50000F074A5 /* TabBarPresent.swift in Sources */,
+				C2614F72239D9E1800BE60CF /* Mapable.swift in Sources */,
 				C2EAA6F6239BC96E00F074A5 /* TabBarController.swift in Sources */,
 				C2EAA6FA239BC9B200F074A5 /* YandexMapController.swift in Sources */,
 				C2E1B434239B125D0000D488 /* AppDelegate.swift in Sources */,
@@ -367,7 +371,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 432CKYPT28;
 				INFOPLIST_FILE = "MapChallenge/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -386,7 +390,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 432CKYPT28;
 				INFOPLIST_FILE = "MapChallenge/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
