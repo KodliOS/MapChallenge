@@ -1,24 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QMU-VP-X2N">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Yandex-->
+        <scene sceneID="3W2-nL-Jm2">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <viewController id="NNZ-q4-h7h" customClass="YandexMapController" customModule="MapChallenge" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7K1-93-Ipb" customClass="YMKMapView">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.0" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Ech-ia-WGZ"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Yandex" id="vlf-N8-xDK">
+                        <color key="badgeColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
+                    <connections>
+                        <outlet property="mapView" destination="7K1-93-Ipb" id="brK-iH-306"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bCo-z1-FPj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="2975" y="1330"/>
+        </scene>
+        <!--Google-->
+        <scene sceneID="ShM-3n-FpY">
+            <objects>
+                <viewController id="DKj-Zd-UC0" customClass="GoogleMapController" customModule="MapChallenge" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Rw9-Ci-Z0e" customClass="GMSMapView">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.019607843137254902" green="0.63137254901960782" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
+                        <viewLayoutGuide key="safeArea" id="iqw-wE-7YN"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Google" id="jNm-Fb-P6w"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uqw-Uf-1Tq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2204" y="1361"/>
+        </scene>
+        <!--Apple-->
+        <scene sceneID="4sG-je-YDq">
+            <objects>
+                <viewController id="5Kx-xl-i7M" customClass="AppleMapController" customModule="MapChallenge" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="e8I-Wx-7qf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="YTC-pP-h8R">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.019607843137254902" green="0.44313725490196076" blue="0.85098039215686272" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="YTC-pP-h8R" secondAttribute="trailing" id="5tn-sF-JLs"/>
+                            <constraint firstItem="YTC-pP-h8R" firstAttribute="leading" secondItem="e8I-Wx-7qf" secondAttribute="leading" id="K13-9H-EOt"/>
+                            <constraint firstItem="YTC-pP-h8R" firstAttribute="top" secondItem="e8I-Wx-7qf" secondAttribute="top" id="SwB-5m-za1"/>
+                            <constraint firstItem="YTC-pP-h8R" firstAttribute="bottom" secondItem="QKY-Gg-NeT" secondAttribute="bottom" id="dZO-XP-6NO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="QKY-Gg-NeT"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Apple" id="sbo-c6-blO"/>
+                    <connections>
+                        <outlet property="mapView" destination="YTC-pP-h8R" id="vJG-1F-D3E"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LsL-jP-ZVB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1496" y="1330"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="2fi-k0-WbT">
+            <objects>
+                <tabBarController id="QMU-VP-X2N" customClass="TabBarController" customModule="MapChallenge" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HUC-gy-Itb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="5Kx-xl-i7M" kind="relationship" relationship="viewControllers" id="bQX-dq-Iio"/>
+                        <segue destination="DKj-Zd-UC0" kind="relationship" relationship="viewControllers" id="Bg1-Jx-Xd4"/>
+                        <segue destination="NNZ-q4-h7h" kind="relationship" relationship="viewControllers" id="yuL-Re-zN9"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yED-zc-K7u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2110" y="563"/>
         </scene>
     </scenes>
 </document>
