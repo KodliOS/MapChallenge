@@ -17,6 +17,6 @@ class GoogleMapController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        self.view = MapView<MockMap>(for: self, type: .google)
+        self.view = BaseMapView<MockMap>(for: self, map: .google)
     }
 }

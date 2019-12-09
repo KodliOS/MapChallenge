@@ -12,12 +12,11 @@ class DefaultMapController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
 
     override func loadView() {
         super.loadView()
-        self.view = MapView<MockMap>(for: self, type: .default)
+        self.view = BaseMapView<MockMap>(for: self, map: .default)
     }
 }
 

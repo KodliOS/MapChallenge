@@ -8,11 +8,18 @@
 
 import UIKit
 
-struct TabBarPresent: Presentable {
+class TabBarPresent: Presentable {
     var controller: UIViewController
     var title: String
     var backgroundColor: UIColor
     let tabBarItem: UITabBarItem
+    
+    internal init(controller: UIViewController, title: String, backgroundColor: UIColor, tabBarItem: UITabBarItem) {
+        self.controller = controller
+        self.title = title
+        self.backgroundColor = backgroundColor
+        self.tabBarItem = tabBarItem
+    }
     
     static func presents() -> [TabBarPresent] {
         return [

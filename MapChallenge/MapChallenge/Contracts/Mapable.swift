@@ -6,11 +6,47 @@
 //  Copyright © 2019 Yasin Akbaş. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import MapKit.MKMapView
 
-protocol Mapable {
+protocol MapView: UIView { }
+
+protocol Mapable: UIView {
+    var mapView: MapView? { get set }
+    func setupMap()
+}
+
+protocol DefaultMapConvertible: Mapable, CLLocationManagerDelegate {
+
+}
+
+protocol GoogleMapConvertible: Mapable {
     
 }
 
+protocol YandexMapConvertible: Mapable {
+    
+}
+
+extension MKMapView: MapView {}
+
+
 // TODO: temporary mock model
-struct MockMap: Mapable { }
+class MockMap:UIView, Mapable {
+    var mapView: MapView? = MKMapView()
+    
+    var type: MapType
+    
+    init(frame: CGRect, type: MapType) {
+        self.type = type
+        super.init(frame: frame)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupMap() {
+        
+    }
+}

@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol Presentable {
+protocol Presentable: class {
     var controller: UIViewController { get set }
     var title: String { get set }
     var backgroundColor: UIColor { get set }
