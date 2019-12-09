@@ -8,45 +8,24 @@
 
 import UIKit
 import MapKit.MKMapView
+import GoogleMaps
 
 protocol MapView: UIView { }
+
+extension MKMapView: MapView { }
+extension GMSMapView: MapView { }
 
 protocol Mapable: UIView {
     var mapView: MapView? { get set }
     func setupMap()
 }
 
-protocol DefaultMapConvertible: Mapable, CLLocationManagerDelegate {
+protocol GoogleMapContracts: Mapable, CLLocationManagerDelegate { }
+protocol DefaultMapContracts: Mapable, CLLocationManagerDelegate { }
+protocol YandexMapContracts: Mapable, CLLocationManagerDelegate { }
+protocol MapProviderContracts: DefaultMapContracts, GoogleMapContracts, YandexMapContracts { }
 
+protocol MapProviderDelegate: class {
+    func updateGoogleMapPin(handler: (GMSMarker) -> Void)
 }
 
-protocol GoogleMapConvertible: Mapable {
-    
-}
-
-protocol YandexMapConvertible: Mapable {
-    
-}
-
-extension MKMapView: MapView {}
-
-
-// TODO: temporary mock model
-class MockMap:UIView, Mapable {
-    var mapView: MapView? = MKMapView()
-    
-    var type: MapType
-    
-    init(frame: CGRect, type: MapType) {
-        self.type = type
-        super.init(frame: frame)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setupMap() {
-        
-    }
-}

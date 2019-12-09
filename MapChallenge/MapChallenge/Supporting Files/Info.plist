@@ -36,6 +36,11 @@
 	<string>We will use your location to displaying on screen.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>We will use your location to displaying on screen.</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>googlechromes</string>
+		<string>comgooglemaps</string>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

@@ -17,6 +17,6 @@ class YandexMapController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        self.view = BaseMapView<MockMap>(for: self, map: .yandex)
+        self.view = BaseMapView(for: self, map: .yandex)
     }
 }

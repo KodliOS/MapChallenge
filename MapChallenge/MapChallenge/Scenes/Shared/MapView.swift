@@ -8,28 +8,18 @@
 
 import UIKit
 import MapKit
+import GoogleMaps
 
 enum MapType {
     case `default`
     case google
     case yandex
-    
-    var map: Mapable.Type {
-        switch self {
-        case .default:
-            return DefaultMap.self
-        case .google:
-            return GoogleMap.self
-        case .yandex:
-            return YandexMap.self
-        }
-    }
 }
 
-class BaseMapView<Map: Mapable>: UIView, CLLocationManagerDelegate {
-    
+class BaseMapView: UIView, CLLocationManagerDelegate {
     private var mapType: MapType
     var mapView: Mapable?
+    weak var delegate: MapProviderDelegate?
     
     private var locationManager = CLLocationManager()
     private weak var viewController: UIViewController?
@@ -50,9 +40,9 @@ class BaseMapView<Map: Mapable>: UIView, CLLocationManagerDelegate {
     
     init(for viewController: UIViewController, map mapType: MapType) {
         self.mapType = mapType
+        super.init(frame: viewController.view.frame)
         self.viewController = viewController
         safeArea = viewController.view.layoutMarginsGuide
-        super.init(frame: viewController.view.frame)
         setupLocationManager()
         setupLabel()
         setupMap()
@@ -60,6 +50,16 @@ class BaseMapView<Map: Mapable>: UIView, CLLocationManagerDelegate {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupMap() {
+        mapView = MapProviderView(locationManager, region: region, map: mapType, frame: bounds)
+        delegate = mapView as? MapProviderDelegate
+        guard let mapView = mapView else { return }
+        addSubview(mapView)
+        checkAuthorizationStatus()
+        
+        makeDefaultMapConstraints(map: mapView)
     }
     
     private func setupLocationManager() {
@@ -75,49 +75,42 @@ class BaseMapView<Map: Mapable>: UIView, CLLocationManagerDelegate {
             guard latitude != nil && longitude != nil else { return }
             
             let center = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
-            region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            region = MKCoordinateRegion(
+                center: center,
+                span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+            )
         } else {
-            // show error
-            print("--> ERROR: Location service disabled")
-            showSimpleAlert(viewController, title: "Permission Error", message: "Can't get your location, Please enable your location service")
+            showSimpleAlert(
+                viewController,
+                title: "Permission Error",
+                message: "Can't get your location, Please enable your location service"
+            )
         }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let map = mapView?.mapView as? GMSMapView else { return }
+        let location: CLLocation = locations.last!
+        let latitude = location.coordinate.latitude
+        let longitude = location.coordinate.longitude
+        let camera = GMSCameraPosition.camera(
+            withLatitude: latitude,
+            longitude: longitude,
+            zoom: 17
+        )
+        map.animate(to: camera)
+        delegate?.updateGoogleMapPin(handler: { marker in
+            marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        })
+        
     }
     
     private func setupLabel() {
         addSubview(label)
     }
     
-    private func setupMap() {
-        switch mapType {
-        case .default:
-            mapView = DefaultMap(locationManager, region: region, frame: bounds)
-            makeDefaultMap(handler: nil)
-        case .google:
-            makeGoogleMap()
-        case .yandex:
-            makeYandexMap()
-        }
-    }
     
-    private func makeDefaultMap(handler: ((MKMapView) -> Void)? ) {
-        guard let mapView = mapView,
-            let map = mapView.mapView as? MKMapView else { return }
-        self.addSubview(mapView)
-        _ = handler != nil ? handler!(map) : nil
-        checkAuthorizationStatus(map: mapView)
-        makeDefaultMapConstraints(map: mapView)
-    }
-    
-    private func makeGoogleMap() {
-        print("google")
-    }
-    
-    private func makeYandexMap() {
-        print("yandex")
-    }
-    
-    
-    private func checkAuthorizationStatus(map mapView: Mapable) {
+    private func checkAuthorizationStatus() {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse:
             print("--> authorizedWhenInUse")
@@ -137,12 +130,13 @@ class BaseMapView<Map: Mapable>: UIView, CLLocationManagerDelegate {
         }
     }
     
-    private func makeDefaultMapConstraints(map: Mapable) {
+    private func makeDefaultMapConstraints(map: Mapable?) {
+        guard let map = map else { return }
         map.translatesAutoresizingMaskIntoConstraints = false
-        map.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: layout.mapMargins.left).isActive = true
-        map.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -layout.mapMargins.bottom).isActive = true
-        map.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -layout.mapMargins.right).isActive = true
-        map.topAnchor.constraint(equalTo: self.topAnchor, constant: layout.mapMargins.top).isActive = true
+        map.leadingAnchor.constraint(equalTo: leadingAnchor, constant: layout.mapMargins.left).isActive = true
+        map.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -layout.mapMargins.bottom).isActive = true
+        map.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -layout.mapMargins.right).isActive = true
+        map.topAnchor.constraint(equalTo: topAnchor, constant: layout.mapMargins.top).isActive = true
     }
     
     struct Layout {
