@@ -8,14 +8,6 @@
 
 import UIKit
 import MapKit.MKMapView
-import GoogleMaps
-import YandexMapKit
-
-protocol MapView: UIView { }
-
-extension MKMapView: MapView { }
-extension GMSMapView: MapView { }
-extension YMKMapView: MapView { }
 
 protocol Mapable: UIView {
     var map: MapView? { get set }

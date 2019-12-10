@@ -38,7 +38,7 @@ class TabBarPresent: Presentable {
             TabBarPresent(
                 controller: MapController(map: .yandex),
                 title: "Yandex",
-                backgroundColor: #colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1),
+                backgroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
                 tabBarItem: UITabBarItem(title: "Yandex Map", image: UIImage(named: "map"), tag: 2)
             ),
             TabBarPresent(

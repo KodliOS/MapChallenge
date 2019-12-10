@@ -10,9 +10,21 @@ import UIKit
 import MapKit
 import GoogleMaps
 
+enum MapType {
+    case `default`
+    case google
+    case yandex
+}
+
+/// <warning> disabled- staging for future
+protocol MapDelegate: class {
+    func updateGoogleMapPin(handler: (GMSMarker) -> Void)
+}
+
 class BaseMapView: UIView, CLLocationManagerDelegate {
     private var mapType: MapType
     var mapView: Mapable?
+    /// <warning> disabled- staging for future
     weak var delegate: MapDelegate?
     
     private var locationManager = CLLocationManager()
@@ -50,9 +62,6 @@ class BaseMapView: UIView, CLLocationManagerDelegate {
         mapView = MapProviderView(locationManager, region: region, type: mapType, frame: bounds)
         delegate = mapView as? MapDelegate
         guard let mapView = mapView else { return }
-
-        addSubview(mapView)
-        checkAuthorizationStatus()
         
         makeDefaultMapConstraints(map: mapView)
     }
@@ -90,28 +99,9 @@ class BaseMapView: UIView, CLLocationManagerDelegate {
         addSubview(label)
     }
     
-    private func checkAuthorizationStatus() {
-        switch status {
-        case .authorizedWhenInUse:
-            print("--> authorizedWhenInUse")
-        case .denied:
-            print("--> denied")
-            break
-        case .notDetermined:
-            print("--> notDetermined")
-        case .restricted:
-            print("--> restricted")
-            break
-        case .authorizedAlways:
-            print("--> authorizedAlways")
-            break
-        @unknown default:
-            fatalError()
-        }
-    }
-    
     private func makeDefaultMapConstraints(map: Mapable?) {
         guard let map = map else { return }
+        addSubview(map)
         map.translatesAutoresizingMaskIntoConstraints = false
         map.leadingAnchor.constraint(equalTo: leadingAnchor, constant: layout.mapMargins.left).isActive = true
         map.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -layout.mapMargins.bottom).isActive = true
@@ -123,14 +113,4 @@ class BaseMapView: UIView, CLLocationManagerDelegate {
         var mapMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         var regionRadius: Double = 1000
     }
-}
-
-enum MapType {
-    case `default`
-    case google
-    case yandex
-}
-
-protocol MapDelegate: class {
-    func updateGoogleMapPin(handler: (GMSMarker) -> Void)
 }

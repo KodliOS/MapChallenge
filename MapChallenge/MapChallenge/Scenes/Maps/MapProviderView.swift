@@ -27,7 +27,6 @@ class MapProviderView:UIView {
         super.init(frame: frame)
         
         setupMap()
-        
         makeDefaultMapConstraints()
     }
     
