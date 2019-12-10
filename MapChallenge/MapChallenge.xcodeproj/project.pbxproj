@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		20872F48C50CCA2AAE2188A3 /* Pods_MapChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2A5E03D715C43C2975C340 /* Pods_MapChallenge.framework */; };
+		C20BE4E4239FAD0D0009B054 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20BE4E3239FAD0D0009B054 /* Location.swift */; };
+		C20BE4EA239FB7730009B054 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20BE4E9239FB7730009B054 /* SettingsController.swift */; };
 		C2614F72239D9E1800BE60CF /* Mapable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2614F71239D9E1800BE60CF /* Mapable.swift */; };
 		C2C897ED239EC74D00A6A007 /* UIVIew+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C897EC239EC74D00A6A007 /* UIVIew+Alert.swift */; };
 		C2C897F4239EF3E700A6A007 /* MapProviderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C897F3239EF3E700A6A007 /* MapProviderView.swift */; };
@@ -15,18 +17,18 @@
 		C2E1B43D239B125E0000D488 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2E1B43C239B125E0000D488 /* Assets.xcassets */; };
 		C2E1B440239B125E0000D488 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2E1B43E239B125E0000D488 /* LaunchScreen.storyboard */; };
 		C2EAA6F6239BC96E00F074A5 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EAA6F5239BC96E00F074A5 /* TabBarController.swift */; };
-		C2EAA6F8239BC9A700F074A5 /* GoogleMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EAA6F7239BC9A700F074A5 /* GoogleMapController.swift */; };
-		C2EAA6FA239BC9B200F074A5 /* YandexMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EAA6F9239BC9B200F074A5 /* YandexMapController.swift */; };
 		C2EAA6FD239BD50000F074A5 /* TabBarPresent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EAA6FC239BD50000F074A5 /* TabBarPresent.swift */; };
 		C2EAA700239BD73600F074A5 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EAA6FF239BD73600F074A5 /* Presentable.swift */; };
 		C2EAA714239BE73D00F074A5 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EAA713239BE73D00F074A5 /* MapView.swift */; };
-		C2EAA716239BEF5F00F074A5 /* DefaultMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EAA715239BEF5F00F074A5 /* DefaultMapController.swift */; };
+		C2EAA716239BEF5F00F074A5 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EAA715239BEF5F00F074A5 /* MapController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		671F003EC79DFB1A8EE84D2F /* Pods-MapChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapChallenge.debug.xcconfig"; path = "Target Support Files/Pods-MapChallenge/Pods-MapChallenge.debug.xcconfig"; sourceTree = "<group>"; };
 		82D6210D06C73C06A45200E3 /* Pods-MapChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapChallenge.release.xcconfig"; path = "Target Support Files/Pods-MapChallenge/Pods-MapChallenge.release.xcconfig"; sourceTree = "<group>"; };
 		AE2A5E03D715C43C2975C340 /* Pods_MapChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C20BE4E3239FAD0D0009B054 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		C20BE4E9239FB7730009B054 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		C2614F71239D9E1800BE60CF /* Mapable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapable.swift; sourceTree = "<group>"; };
 		C2C897EC239EC74D00A6A007 /* UIVIew+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew+Alert.swift"; sourceTree = "<group>"; };
 		C2C897F3239EF3E700A6A007 /* MapProviderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapProviderView.swift; sourceTree = "<group>"; };
@@ -36,12 +38,10 @@
 		C2E1B43F239B125E0000D488 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C2E1B441239B125E0000D488 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2EAA6F5239BC96E00F074A5 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		C2EAA6F7239BC9A700F074A5 /* GoogleMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapController.swift; sourceTree = "<group>"; };
-		C2EAA6F9239BC9B200F074A5 /* YandexMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexMapController.swift; sourceTree = "<group>"; };
 		C2EAA6FC239BD50000F074A5 /* TabBarPresent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPresent.swift; sourceTree = "<group>"; };
 		C2EAA6FF239BD73600F074A5 /* Presentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
 		C2EAA713239BE73D00F074A5 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		C2EAA715239BEF5F00F074A5 /* DefaultMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMapController.swift; sourceTree = "<group>"; };
+		C2EAA715239BEF5F00F074A5 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,9 +73,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C20BE4E2239FACED0009B054 /* Env */ = {
+			isa = PBXGroup;
+			children = (
+				C20BE4E3239FAD0D0009B054 /* Location.swift */,
+			);
+			path = Env;
+			sourceTree = "<group>";
+		};
+		C20BE4E8239FB75C0009B054 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C20BE4E9239FB7730009B054 /* SettingsController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		C2C897EA239EC72000A6A007 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				C20BE4E2239FACED0009B054 /* Env */,
 				C2C897EB239EC73500A6A007 /* Extensions */,
 			);
 			path = Utilities;
@@ -167,45 +184,20 @@
 		C2EAA701239BD78B00F074A5 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				C2EAA712239BE71600F074A5 /* Shared */,
-				C2EAA702239BD79300F074A5 /* DefaultMap */,
-				C2EAA703239BD79800F074A5 /* GoogleMap */,
-				C2EAA704239BD79C00F074A5 /* YandexMap */,
+				C2EAA712239BE71600F074A5 /* Maps */,
+				C20BE4E8239FB75C0009B054 /* Settings */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
 		};
-		C2EAA702239BD79300F074A5 /* DefaultMap */ = {
-			isa = PBXGroup;
-			children = (
-				C2EAA715239BEF5F00F074A5 /* DefaultMapController.swift */,
-			);
-			path = DefaultMap;
-			sourceTree = "<group>";
-		};
-		C2EAA703239BD79800F074A5 /* GoogleMap */ = {
-			isa = PBXGroup;
-			children = (
-				C2EAA6F7239BC9A700F074A5 /* GoogleMapController.swift */,
-			);
-			path = GoogleMap;
-			sourceTree = "<group>";
-		};
-		C2EAA704239BD79C00F074A5 /* YandexMap */ = {
-			isa = PBXGroup;
-			children = (
-				C2EAA6F9239BC9B200F074A5 /* YandexMapController.swift */,
-			);
-			path = YandexMap;
-			sourceTree = "<group>";
-		};
-		C2EAA712239BE71600F074A5 /* Shared */ = {
+		C2EAA712239BE71600F074A5 /* Maps */ = {
 			isa = PBXGroup;
 			children = (
 				C2EAA713239BE73D00F074A5 /* MapView.swift */,
 				C2C897F3239EF3E700A6A007 /* MapProviderView.swift */,
+				C2EAA715239BEF5F00F074A5 /* MapController.swift */,
 			);
-			path = Shared;
+			path = Maps;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,16 +314,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2EAA6F8239BC9A700F074A5 /* GoogleMapController.swift in Sources */,
 				C2C897ED239EC74D00A6A007 /* UIVIew+Alert.swift in Sources */,
 				C2EAA714239BE73D00F074A5 /* MapView.swift in Sources */,
-				C2EAA716239BEF5F00F074A5 /* DefaultMapController.swift in Sources */,
+				C2EAA716239BEF5F00F074A5 /* MapController.swift in Sources */,
 				C2EAA6FD239BD50000F074A5 /* TabBarPresent.swift in Sources */,
 				C2614F72239D9E1800BE60CF /* Mapable.swift in Sources */,
+				C20BE4EA239FB7730009B054 /* SettingsController.swift in Sources */,
 				C2EAA6F6239BC96E00F074A5 /* TabBarController.swift in Sources */,
-				C2EAA6FA239BC9B200F074A5 /* YandexMapController.swift in Sources */,
 				C2E1B434239B125D0000D488 /* AppDelegate.swift in Sources */,
 				C2C897F4239EF3E700A6A007 /* MapProviderView.swift in Sources */,
+				C20BE4E4239FAD0D0009B054 /* Location.swift in Sources */,
 				C2EAA700239BD73600F074A5 /* Presentable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

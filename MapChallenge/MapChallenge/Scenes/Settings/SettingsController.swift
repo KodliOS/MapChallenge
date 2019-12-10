@@ -1,22 +1,21 @@
 //
-//  SecondViewController.swift
+//  SettingsController.swift
 //  MapChallenge
 //
-//  Created by Yasin Akbaş on 7.12.2019.
+//  Created by Yasin Akbaş on 10.12.2019.
 //  Copyright © 2019 Yasin Akbaş. All rights reserved.
 //
 
 import UIKit
 
-class GoogleMapController: UIViewController {
+class SettingsController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     override func loadView() {
         super.loadView()
-        self.view = BaseMapView(for: self, map: .google)
     }
+    
 }

@@ -10,17 +10,16 @@ import UIKit
 
 class TabBarController: UITabBarController {
     
-    var tabBarPresents: [Presentable] = TabBarPresent.presents()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAppearance()
         
-        viewControllers = makeControllers(tabBarPresents)
+        viewControllers = makeControllers(TabBarPresent.presents())
     }
     
     private func setupAppearance() {
         tabBar.barTintColor = .black
+        tabBar.tintColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
     }
     
     private func makeControllers(_ presents: [Presentable]) -> [UIViewController] {

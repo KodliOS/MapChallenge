@@ -12,22 +12,22 @@ import GoogleMaps
 import GooglePlaces
 
 class MapProviderView:UIView {
-    var map: MapType
-    var mapView: MapView?
+    var mapType: MapType
+    var map: MapView?
     var layout = Layout()
     var marker: GMSMarker?
     
     var locationManager: CLLocationManager!
     var region: MKCoordinateRegion?
     
-    init(_ locationManager:CLLocationManager, region: MKCoordinateRegion?, map: MapType, frame: CGRect) {
+    init(_ locationManager:CLLocationManager, region: MKCoordinateRegion?, type: MapType, frame: CGRect) {
         self.locationManager = locationManager
         self.region = region
-        self.map = map
+        self.mapType = type
         super.init(frame: frame)
         
         setupMap()
-        self.addSubview(mapView!)
+        self.addSubview(map!)
         makeDefaultMapConstraints()
         
     }
@@ -37,7 +37,7 @@ class MapProviderView:UIView {
     }
     
     private func makeDefaultMapConstraints() {
-        guard let mapView = mapView else { return }
+        guard let mapView = map else { return }
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mapView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: layout.mapMargins.left).isActive = true
         mapView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -layout.mapMargins.bottom).isActive = true
@@ -54,15 +54,14 @@ class MapProviderView:UIView {
 extension MapProviderView: MapProviderContracts {
     func setupMap() {
         if CLLocationManager.locationServicesEnabled() {
-            mapView = MKMapView()
-            let location = locationManager.location
-            let latitude = location?.coordinate.latitude
-            let longitude = location?.coordinate.longitude
-            
-            switch map {
+            map = MKMapView()
+            guard let location = locationManager.location else { return }
+            let latitude = location.coordinate.latitude
+            let longitude = location.coordinate.longitude
+            switch mapType {
             case .default:
-                mapView = MKMapView()
-                guard let mapView = mapView as? MKMapView else { return }
+                map = MKMapView()
+                guard let mapView = map as? MKMapView else { return }
                 mapView.mapType = MKMapType.standard
                 mapView.isZoomEnabled = true
                 mapView.isScrollEnabled = true
@@ -71,16 +70,11 @@ extension MapProviderView: MapProviderContracts {
                     mapView.setRegion(region, animated: true)
                 }
             case .google:
-                let camera = GMSCameraPosition.camera(withLatitude: latitude!, longitude: longitude!, zoom: 17.0)
-                mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-                guard let mapView = mapView as? GMSMapView else { return }
-                
+                let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: Float(zoom))
+                map = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+                guard let mapView = map as? GMSMapView else { return }
+                mapView.isMyLocationEnabled = true
                 mapView.settings.myLocationButton = true
-                marker = GMSMarker()
-                guard let marker = marker else { return }
-                marker.position = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
-                marker.title = "Your Location"
-                marker.map = mapView
             case .yandex:
                 print("yandex")
             }
@@ -88,7 +82,7 @@ extension MapProviderView: MapProviderContracts {
     }
 }
 
-extension MapProviderView: MapProviderDelegate {
+extension MapProviderView: MapDelegate {
     func updateGoogleMapPin(handler: (GMSMarker) -> Void) {
         guard let marker = marker else { return }
         handler(marker)

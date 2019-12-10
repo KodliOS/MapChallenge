@@ -10,16 +10,10 @@ import UIKit
 import MapKit
 import GoogleMaps
 
-enum MapType {
-    case `default`
-    case google
-    case yandex
-}
-
 class BaseMapView: UIView, CLLocationManagerDelegate {
     private var mapType: MapType
     var mapView: Mapable?
-    weak var delegate: MapProviderDelegate?
+    weak var delegate: MapDelegate?
     
     private var locationManager = CLLocationManager()
     private weak var viewController: UIViewController?
@@ -53,9 +47,10 @@ class BaseMapView: UIView, CLLocationManagerDelegate {
     }
     
     private func setupMap() {
-        mapView = MapProviderView(locationManager, region: region, map: mapType, frame: bounds)
-        delegate = mapView as? MapProviderDelegate
+        mapView = MapProviderView(locationManager, region: region, type: mapType, frame: bounds)
+        delegate = mapView as? MapDelegate
         guard let mapView = mapView else { return }
+
         addSubview(mapView)
         checkAuthorizationStatus()
         
@@ -63,55 +58,40 @@ class BaseMapView: UIView, CLLocationManagerDelegate {
     }
     
     private func setupLocationManager() {
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self // actually don't needed for this project
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.distanceFilter = kCLDistanceFilterNone
-            locationManager.startUpdatingLocation()
-            
-            let latitude = locationManager.location?.coordinate.latitude
-            let longitude = locationManager.location?.coordinate.longitude
-            guard latitude != nil && longitude != nil else { return }
-            
-            let center = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
-            region = MKCoordinateRegion(
-                center: center,
-                span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-            )
-        } else {
-            showSimpleAlert(
-                viewController,
-                title: "Permission Error",
-                message: "Can't get your location, Please enable your location service"
-            )
-        }
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.startUpdatingLocation()
+        
+        let latitude = locationManager.location?.coordinate.latitude
+        let longitude = locationManager.location?.coordinate.longitude
+        guard latitude != nil && longitude != nil else { return }
+        
+        let center = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
+        region = MKCoordinateRegion(
+            center: center,
+            span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        )
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let map = mapView?.mapView as? GMSMapView else { return }
         let location: CLLocation = locations.last!
         let latitude = location.coordinate.latitude
         let longitude = location.coordinate.longitude
-        let camera = GMSCameraPosition.camera(
-            withLatitude: latitude,
-            longitude: longitude,
-            zoom: 17
-        )
-        map.animate(to: camera)
-        delegate?.updateGoogleMapPin(handler: { marker in
-            marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        })
-        
+        if let _ = mapView?.map as? GMSMapView {
+            delegate?.updateGoogleMapPin(handler: { marker in
+                marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            })
+        }
     }
     
     private func setupLabel() {
         addSubview(label)
     }
     
-    
     private func checkAuthorizationStatus() {
-        switch CLLocationManager.authorizationStatus() {
+        switch status {
         case .authorizedWhenInUse:
             print("--> authorizedWhenInUse")
         case .denied:
@@ -143,4 +123,14 @@ class BaseMapView: UIView, CLLocationManagerDelegate {
         var mapMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         var regionRadius: Double = 1000
     }
+}
+
+enum MapType {
+    case `default`
+    case google
+    case yandex
+}
+
+protocol MapDelegate: class {
+    func updateGoogleMapPin(handler: (GMSMarker) -> Void)
 }

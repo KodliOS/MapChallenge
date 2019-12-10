@@ -16,16 +16,12 @@ extension MKMapView: MapView { }
 extension GMSMapView: MapView { }
 
 protocol Mapable: UIView {
-    var mapView: MapView? { get set }
+    var map: MapView? { get set }
     func setupMap()
 }
 
 protocol GoogleMapContracts: Mapable, CLLocationManagerDelegate { }
 protocol DefaultMapContracts: Mapable, CLLocationManagerDelegate { }
 protocol YandexMapContracts: Mapable, CLLocationManagerDelegate { }
+
 protocol MapProviderContracts: DefaultMapContracts, GoogleMapContracts, YandexMapContracts { }
-
-protocol MapProviderDelegate: class {
-    func updateGoogleMapPin(handler: (GMSMarker) -> Void)
-}
-
