@@ -9,7 +9,7 @@
 import UIKit
 import MapKit.MKMapView
 import GoogleMaps
-import GooglePlaces
+import YandexMapKit
 
 class MapProviderView:UIView {
     var mapType: MapType
@@ -20,16 +20,15 @@ class MapProviderView:UIView {
     var locationManager: CLLocationManager!
     var region: MKCoordinateRegion?
     
-    init(_ locationManager:CLLocationManager, region: MKCoordinateRegion?, type: MapType, frame: CGRect) {
+    init(_ locationManager:CLLocationManager, region: MKCoordinateRegion?, type: MapType, frame: CGRect, marker: Bool = false) {
         self.locationManager = locationManager
         self.region = region
         self.mapType = type
         super.init(frame: frame)
         
         setupMap()
-        self.addSubview(map!)
-        makeDefaultMapConstraints()
         
+        makeDefaultMapConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -58,27 +57,65 @@ extension MapProviderView: MapProviderContracts {
             guard let location = locationManager.location else { return }
             let latitude = location.coordinate.latitude
             let longitude = location.coordinate.longitude
+            
             switch mapType {
             case .default:
-                map = MKMapView()
-                guard let mapView = map as? MKMapView else { return }
-                mapView.mapType = MKMapType.standard
-                mapView.isZoomEnabled = true
-                mapView.isScrollEnabled = true
-                mapView.showsUserLocation = true
-                if let region = region {
-                    mapView.setRegion(region, animated: true)
-                }
+                setupDefaultMap()
             case .google:
-                let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: Float(zoom))
-                map = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-                guard let mapView = map as? GMSMapView else { return }
-                mapView.isMyLocationEnabled = true
-                mapView.settings.myLocationButton = true
+                setupGoogleMap(latitude: latitude, longitude: longitude)
             case .yandex:
-                print("yandex")
+                setupYandexMap(latitude: latitude, longitude: longitude)
             }
         }
+        self.addSubview(map!)
+    }
+    
+    private func setupDefaultMap() {
+        map = MKMapView()
+        guard let mapView = map as? MKMapView else { return }
+        mapView.mapType = MKMapType.standard
+        mapView.isZoomEnabled = true
+        mapView.isScrollEnabled = true
+        mapView.showsUserLocation = true
+        if let region = region {
+            mapView.setRegion(region, animated: true)
+        }
+    }
+    
+    private func setupGoogleMap(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+        let camera = GMSCameraPosition.camera(
+            withLatitude: latitude,
+            longitude: longitude,
+            zoom: Float(zoom)
+        )
+        map = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        guard let mapView = map as? GMSMapView else { return }
+        mapView.isMyLocationEnabled = true
+        mapView.settings.myLocationButton = true
+    }
+    
+    private func setupYandexMap(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+        map = YMKMapView()
+        print("type of map \(type(of: map))")
+        guard let mapView = map as? YMKMapView else { return }
+        mapView.mapWindow.map.isRotateGesturesEnabled = false
+        let userLocationLayer = YMKMapKit.sharedInstance().createUserLocationLayer(with: mapView.mapWindow)
+        userLocationLayer.setVisibleWithOn(true)
+        userLocationLayer.isHeadingEnabled = true
+        mapView.mapWindow.map.move(
+            with: YMKCameraPosition.init(
+                target: YMKPoint(
+                    latitude: latitude,
+                    longitude: longitude
+                ),
+                zoom: Float(zoom),
+                azimuth: 0,
+                tilt: 0
+            ),
+            animationType: YMKAnimation(
+                type: YMKAnimationType.smooth,
+                duration: 5),
+            cameraCallback: nil)
     }
 }
 

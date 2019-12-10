@@ -10,6 +10,8 @@
 		20872F48C50CCA2AAE2188A3 /* Pods_MapChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2A5E03D715C43C2975C340 /* Pods_MapChallenge.framework */; };
 		C20BE4E4239FAD0D0009B054 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20BE4E3239FAD0D0009B054 /* Location.swift */; };
 		C20BE4EA239FB7730009B054 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20BE4E9239FB7730009B054 /* SettingsController.swift */; };
+		C20BE4EC239FBEC50009B054 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20BE4EB239FBEC50009B054 /* SettingsView.swift */; };
+		C20BE4EE239FC21E0009B054 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20BE4ED239FC21E0009B054 /* UIView.swift */; };
 		C2614F72239D9E1800BE60CF /* Mapable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2614F71239D9E1800BE60CF /* Mapable.swift */; };
 		C2C897ED239EC74D00A6A007 /* UIVIew+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C897EC239EC74D00A6A007 /* UIVIew+Alert.swift */; };
 		C2C897F4239EF3E700A6A007 /* MapProviderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C897F3239EF3E700A6A007 /* MapProviderView.swift */; };
@@ -29,6 +31,8 @@
 		AE2A5E03D715C43C2975C340 /* Pods_MapChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C20BE4E3239FAD0D0009B054 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		C20BE4E9239FB7730009B054 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		C20BE4EB239FBEC50009B054 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C20BE4ED239FC21E0009B054 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		C2614F71239D9E1800BE60CF /* Mapable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapable.swift; sourceTree = "<group>"; };
 		C2C897EC239EC74D00A6A007 /* UIVIew+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew+Alert.swift"; sourceTree = "<group>"; };
 		C2C897F3239EF3E700A6A007 /* MapProviderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapProviderView.swift; sourceTree = "<group>"; };
@@ -85,14 +89,23 @@
 			isa = PBXGroup;
 			children = (
 				C20BE4E9239FB7730009B054 /* SettingsController.swift */,
+				C20BE4EB239FBEC50009B054 /* SettingsView.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		C20BE4EF239FC2660009B054 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				C2E1B433239B125D0000D488 /* AppDelegate.swift */,
+				C2E1B43E239B125E0000D488 /* LaunchScreen.storyboard */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 		C2C897EA239EC72000A6A007 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				C20BE4E2239FACED0009B054 /* Env */,
 				C2C897EB239EC73500A6A007 /* Extensions */,
 			);
 			path = Utilities;
@@ -109,6 +122,7 @@
 		C2C897EE239EC74F00A6A007 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
+				C20BE4ED239FC21E0009B054 /* UIView.swift */,
 				C2C897EC239EC74D00A6A007 /* UIVIew+Alert.swift */,
 			);
 			path = UIView;
@@ -157,8 +171,8 @@
 		C2E1B448239B12A50000D488 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				C2E1B433239B125D0000D488 /* AppDelegate.swift */,
-				C2E1B43E239B125E0000D488 /* LaunchScreen.storyboard */,
+				C20BE4EF239FC2660009B054 /* Core */,
+				C20BE4E2239FACED0009B054 /* Env */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -314,6 +328,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C20BE4EE239FC21E0009B054 /* UIView.swift in Sources */,
 				C2C897ED239EC74D00A6A007 /* UIVIew+Alert.swift in Sources */,
 				C2EAA714239BE73D00F074A5 /* MapView.swift in Sources */,
 				C2EAA716239BEF5F00F074A5 /* MapController.swift in Sources */,
@@ -323,6 +338,7 @@
 				C2EAA6F6239BC96E00F074A5 /* TabBarController.swift in Sources */,
 				C2E1B434239B125D0000D488 /* AppDelegate.swift in Sources */,
 				C2C897F4239EF3E700A6A007 /* MapProviderView.swift in Sources */,
+				C20BE4EC239FBEC50009B054 /* SettingsView.swift in Sources */,
 				C20BE4E4239FAD0D0009B054 /* Location.swift in Sources */,
 				C2EAA700239BD73600F074A5 /* Presentable.swift in Sources */,
 			);
