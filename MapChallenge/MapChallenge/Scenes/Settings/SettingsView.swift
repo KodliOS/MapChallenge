@@ -13,11 +13,11 @@ class SettingsView: UIView {
     let layout = Layout()
     
     lazy var tableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: CGRect.zero, style: .grouped)
         tableView.backgroundColor = .clear
         tableView.separatorColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         tableView.separatorInset = UIEdgeInsets(top: 70, left: 70, bottom: 70, right: 70)
-        
+//        tableView.tableFooterView = UIView()
         return tableView
     }()
 
@@ -42,5 +42,19 @@ class SettingsView: UIView {
     
     struct Layout {
         let tableViewMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+}
+
+extension SettingsView: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
     }
 }

@@ -10,6 +10,7 @@ import UIKit
 
 protocol Presentable: class {
     var controller: UIViewController { get set }
+    var view: UIView? { get set }
     var title: String { get set }
     var backgroundColor: UIColor { get set }
 }

@@ -1,5 +1,5 @@
 //
-//  MapView.swift
+//  MapViewContract.swift
 //  MapChallenge
 //
 //  Created by Yasin Akbaş on 10.12.2019.
@@ -11,8 +11,8 @@ import GoogleMaps
 import YandexMapKit
 import MapKit.MKMapView
 
-protocol MapView: UIView { }
+protocol MapViewContract: UIView { }
 
-extension MKMapView: MapView { }
-extension GMSMapView: MapView { }
-extension YMKMapView: MapView { }
+extension MKMapView: MapViewContract { }
+extension GMSMapView: MapViewContract { }
+extension YMKMapView: MapViewContract { }

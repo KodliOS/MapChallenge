@@ -10,12 +10,14 @@ import UIKit
 
 class TabBarPresent: Presentable {
     var controller: UIViewController
+    var view: UIView?
     var title: String
     var backgroundColor: UIColor
     let tabBarItem: UITabBarItem
     
-    internal init(controller: UIViewController, title: String, backgroundColor: UIColor, tabBarItem: UITabBarItem) {
+    internal init(controller: UIViewController, view: UIView?, title: String, backgroundColor: UIColor, tabBarItem: UITabBarItem) {
         self.controller = controller
+        self.view = view
         self.title = title
         self.backgroundColor = backgroundColor
         self.tabBarItem = tabBarItem
@@ -24,27 +26,31 @@ class TabBarPresent: Presentable {
     static func presents() -> [TabBarPresent] {
         return [
             TabBarPresent(
-                controller: MapController(map: .default),
+                controller: MapController(),
+                view: MapView(map: .default, frame: .zero),
                 title: "Default",
                 backgroundColor: #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1),
                 tabBarItem: UITabBarItem(title: "Default Map", image: UIImage(named: "map"), tag: 0)
             ),
             TabBarPresent(
-                controller: MapController(map: .google),
+                controller: MapController(),
+                view: MapView(map: .google, frame: .zero),
                 title: "Google",
                 backgroundColor: #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1),
                 tabBarItem: UITabBarItem(title: "Google Map", image: UIImage(named: "map"), tag: 1)
             ),
             TabBarPresent(
-                controller: MapController(map: .yandex),
+                controller: MapController(),
+                view: MapView(map: .yandex, frame: .zero),
                 title: "Yandex",
                 backgroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
                 tabBarItem: UITabBarItem(title: "Yandex Map", image: UIImage(named: "map"), tag: 2)
             ),
             TabBarPresent(
                 controller: SettingsController(),
+                view: SettingsView(),
                 title: "Settings",
-                backgroundColor: #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1),
+                backgroundColor: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1),
                 tabBarItem: UITabBarItem(title: "Settings", image: UIImage(named: "settings"), tag: 3)
             )
         ]

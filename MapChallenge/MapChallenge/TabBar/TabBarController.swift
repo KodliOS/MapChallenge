@@ -14,7 +14,7 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         setupAppearance()
         
-        viewControllers = makeControllers(TabBarPresent.presents())
+        viewControllers = makeControllers(from: TabBarPresent.presents())
     }
     
     private func setupAppearance() {
@@ -22,11 +22,12 @@ class TabBarController: UITabBarController {
         tabBar.tintColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
     }
     
-    private func makeControllers(_ presents: [Presentable]) -> [UIViewController] {
+    private func makeControllers(from presents: [Presentable]) -> [UIViewController] {
         var controllers = [UIViewController]()
         presents.forEach { present in
             let viewController = present.controller
             viewController.title = present.title
+            viewController.view = present.view
             viewController.view.backgroundColor = present.backgroundColor
             
             if let present = present as? TabBarPresent {

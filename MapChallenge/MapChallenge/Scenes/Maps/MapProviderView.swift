@@ -13,7 +13,7 @@ import YandexMapKit
 
 class MapProviderView:UIView {
     var mapType: MapType
-    var map: MapView?
+    var map: MapViewContract?
     var layout = Layout()
     var marker: GMSMarker?
     
@@ -35,12 +35,13 @@ class MapProviderView:UIView {
     }
     
     private func makeDefaultMapConstraints() {
-        guard let mapView = map else { return }
-        mapView.translatesAutoresizingMaskIntoConstraints = false
-        mapView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: layout.mapMargins.left).isActive = true
-        mapView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -layout.mapMargins.bottom).isActive = true
-        mapView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -layout.mapMargins.right).isActive = true
-        mapView.topAnchor.constraint(equalTo: self.topAnchor, constant: layout.mapMargins.top).isActive = true
+        guard let map = map else { return }
+        self.addSubview(map)
+        map.translatesAutoresizingMaskIntoConstraints = false
+        map.leftAnchor.constraint(equalTo: leftAnchor, constant: layout.mapMargins.left).isActive = true
+        map.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -layout.mapMargins.bottom).isActive = true
+        map.rightAnchor.constraint(equalTo: rightAnchor, constant: -layout.mapMargins.right).isActive = true
+        map.topAnchor.constraint(equalTo: topAnchor, constant: layout.mapMargins.top).isActive = true
     }
     
     struct Layout {
@@ -53,20 +54,19 @@ extension MapProviderView: MapProviderContracts {
     func setupMap() {
         if CLLocationManager.locationServicesEnabled() {
             map = MKMapView()
-            guard let location = locationManager.location else { return }
-            let latitude = location.coordinate.latitude
-            let longitude = location.coordinate.longitude
+            let latitude = locationManager.location?.coordinate.latitude
+            let longitude = locationManager.location?.coordinate.longitude
+            guard latitude != nil && longitude != nil else { return }
             
             switch mapType {
             case .default:
                 setupDefaultMap()
             case .google:
-                setupGoogleMap(latitude: latitude, longitude: longitude)
+                setupGoogleMap(latitude: latitude!, longitude: longitude!)
             case .yandex:
-                setupYandexMap(latitude: latitude, longitude: longitude)
+                setupYandexMap(latitude: latitude!, longitude: longitude!)
             }
         }
-        self.addSubview(map!)
     }
     
     private func setupDefaultMap() {

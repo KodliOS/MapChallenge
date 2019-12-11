@@ -21,7 +21,7 @@ protocol MapDelegate: class {
     func updateGoogleMapPin(handler: (GMSMarker) -> Void)
 }
 
-class BaseMapView: UIView, CLLocationManagerDelegate {
+class MapView: UIView, CLLocationManagerDelegate {
     private var mapType: MapType
     var mapView: Mapable?
     /// <warning> disabled- staging for future
@@ -29,8 +29,7 @@ class BaseMapView: UIView, CLLocationManagerDelegate {
     
     private var locationManager = CLLocationManager()
     private weak var viewController: UIViewController?
-    
-    private var safeArea: UILayoutGuide!
+
     private var layout = Layout()
     
     private var region: MKCoordinateRegion?
@@ -44,11 +43,9 @@ class BaseMapView: UIView, CLLocationManagerDelegate {
         return label
     }()
     
-    init(for viewController: UIViewController, map mapType: MapType) {
+    init(map mapType: MapType, frame: CGRect) {
         self.mapType = mapType
-        super.init(frame: viewController.view.frame)
-        self.viewController = viewController
-        safeArea = viewController.view.layoutMarginsGuide
+        super.init(frame: frame)
         setupLocationManager()
         setupLabel()
         setupMap()

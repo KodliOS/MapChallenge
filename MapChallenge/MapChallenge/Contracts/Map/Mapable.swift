@@ -10,7 +10,7 @@ import UIKit
 import MapKit.MKMapView
 
 protocol Mapable: UIView {
-    var map: MapView? { get set }
+    var map: MapViewContract? { get set }
     func setupMap()
 }
 
