@@ -1,0 +1,10 @@
+platform :ios, '9.0'
+
+target 'MapChallenge' do
+  use_frameworks!
+
+  # Pods for MapChallenge
+
+  pod 'GoogleMaps'
+  
+end
