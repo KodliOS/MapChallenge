@@ -11,6 +11,12 @@ import MapKit.MKMapView
 import GoogleMaps
 import YandexMapKit
 
+enum MapType {
+    case `default`
+    case google
+    case yandex
+}
+
 class MapProviderView:UIView {
     var mapType: MapType
     var map: MapViewContract?

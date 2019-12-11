@@ -10,12 +10,6 @@ import UIKit
 import MapKit
 import GoogleMaps
 
-enum MapType {
-    case `default`
-    case google
-    case yandex
-}
-
 /// <warning> disabled- staging for future
 protocol MapDelegate: class {
     func updateGoogleMapPin(handler: (GMSMarker) -> Void)
