@@ -53,7 +53,7 @@ class MapView: UIView, CLLocationManagerDelegate {
         mapView = MapProviderView(locationManager, region: region, type: mapType, frame: bounds)
         delegate = mapView as? MapDelegate
         guard let mapView = mapView else { return }
-        
+        addSubview(mapView)
         makeDefaultMapConstraints(map: mapView)
     }
     
@@ -90,9 +90,7 @@ class MapView: UIView, CLLocationManagerDelegate {
         addSubview(label)
     }
     
-    private func makeDefaultMapConstraints(map: Mapable?) {
-        guard let map = map else { return }
-        addSubview(map)
+    private func makeDefaultMapConstraints(map: Mapable) {
         map.translatesAutoresizingMaskIntoConstraints = false
         map.leadingAnchor.constraint(equalTo: leadingAnchor, constant: layout.mapMargins.left).isActive = true
         map.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -layout.mapMargins.bottom).isActive = true
