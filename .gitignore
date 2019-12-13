@@ -1,7 +1,4 @@
 
-# Created by https://www.gitignore.io/api/swift,xcode
-# Edit at https://www.gitignore.io/?templates=swift,xcode
-
 ### Swift ###
 # Xcode
 #
@@ -50,8 +47,7 @@ playground.xcworkspace
 # We recommend against adding the Pods directory to your .gitignore. However
 # you should judge for yourself, the pros and cons are mentioned at:
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
-Pods/
-MapChallenge/Pods/
+
 # Add this line if you want to avoid checking in source code from the Xcode workspace
 # *.xcworkspace
 
@@ -102,9 +98,3 @@ iOSInjectionProject/
 ### Xcode Patch ###
 **/xcshareddata/WorkspaceSettings.xcsettings
 
-# End of https://www.gitignore.io/api/swift,xcode
-MapChallenge/.DS_Store
-MapChallenge/.DS_Store
-.DS_Store
-MapChallenge/MapChallenge/.DS_Store
-MapChallenge/Podfile.lock
